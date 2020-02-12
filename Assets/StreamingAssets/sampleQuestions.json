@@ -1,0 +1,34 @@
+{ "questions": 
+  [
+    {
+      "question" : "What's the name of our CEO?",
+      "answer" : "Melissa",
+      "wrongAnswers" : ["Lisa","Thomas","Laura"]
+    },
+    {
+      "question" : "What's our favourite color?",
+      "answer" : "Green",
+      "wrongAnswers" : ["Red","Black","Pink"]
+    },
+    {
+      "question" : "Where are our headquarters?",
+      "answer" : "Nuremberg",
+      "wrongAnswers" : ["Prague","London","Paris"]
+    },
+    {
+      "question" : "Which is our official chat tool",
+      "answer" : "Rocket Chat",
+      "wrongAnswers" : ["IRC","Messenger","Slack"]
+    },
+    {
+      "question" : "What's our favourite pet?",
+      "answer" : "Chameleon",
+      "wrongAnswers" : ["Cat","Dog","Lizard"]
+    },
+    {
+      "question" : "Allow we remote work?",
+      "answer" : "Yes",
+      "wrongAnswers" : ["No","Only on Friday","Only in Germany"]
+    }
+  ]
+}

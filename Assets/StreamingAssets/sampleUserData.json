@@ -1,0 +1,17 @@
+{ 
+  "mailAddress": "obarrios@suse.com",
+  "lives": 3,
+  "solvedQuestions": 
+  [
+    {
+      "question" : "What's the name of our CEO?",
+      "answer" : "Melissa",
+      "wrongAnswers" : ["Lisa","Thomas","Laura"]
+    },
+    {
+      "question" : "What's our favourite color?",
+      "answer" : "Green",
+      "wrongAnswers" : ["Red","Black","Pink"]
+    }
+  ]
+}

@@ -16,7 +16,7 @@
       "wrongAnswers" : ["Prague","London","Paris"]
     },
     {
-      "question" : "Which is our official chat tool",
+      "question" : "What's our official chatting tool?",
       "answer" : "Rocket Chat",
       "wrongAnswers" : ["IRC","Messenger","Slack"]
     },
@@ -26,9 +26,29 @@
       "wrongAnswers" : ["Cat","Dog","Lizard"]
     },
     {
-      "question" : "Allow we remote work?",
+      "question" : "Allow we remote working?",
       "answer" : "Yes",
       "wrongAnswers" : ["No","Only on Friday","Only in Germany"]
+    },
+    {
+      "question" : "What's the last released version of the SUSE Linux Enterprise Server?",
+      "answer" : "15 SP1",
+      "wrongAnswers" : ["15 SP2","12 SP4","11 SP4"]
+    },
+    {
+      "question" : "What's the name of OpenSUSE rolling release?",
+      "answer" : "Tumbleweed",
+      "wrongAnswers" : ["Tumblewide","Leap","SLES"]
+    },
+    {
+      "question" : "When was released the first version of SUSE (S.u.S.E. Linux 4.2)?",
+      "answer" : "1996",
+      "wrongAnswers" : ["1988","1992","2005"]
+    },
+    {
+      "question" : "How we call our pet?",
+      "answer" : "Geeko",
+      "wrongAnswers" : ["Greeny","Susy","Leap"]
     }
   ]
 }

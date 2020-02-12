@@ -5,21 +5,33 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class QuizMgr : MonoBehaviour
 {
+    readonly string questionsURL = "https://raw.githubusercontent.com/srbarrios/susequiz/master/Assets/StreamingAssets/sampleQuestions.json";
+
+    //Panels
+    GameObject webManager;
     GameObject welcomePanel;
     GameObject loginPanel;
     GameObject gamePanel;
     GameObject winPanel;
     GameObject losePanel;
+
+    //Login Panel
+    Text emailText;
+
+    //Game Panel
     GameObject questionLabel;
     GameObject answer1Label;
     GameObject answer2Label;
     GameObject answer3Label;
     GameObject answer4Label;
-    GameObject[] geeckos;
+    GameObject[] geekos;
+
+    //Data
     UserData userData;
     Questions questions;
     Question currentQuestion;
@@ -27,13 +39,16 @@ public class QuizMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        geeckos = new GameObject[3];
+        geekos = new GameObject[3];
 
+        webManager = GameObject.Find("WebMgr");
         welcomePanel = GameObject.Find("WelcomePanel");
         loginPanel = GameObject.Find("LoginPanel");
         gamePanel = GameObject.Find("GamePanel");
         winPanel = GameObject.Find("WinPanel");
         losePanel = GameObject.Find("LosePanel");
+
+        emailText = GameObject.Find("EmailText").GetComponent<Text>();
 
         questionLabel = GameObject.Find("QuestionLabel");
         answer1Label = GameObject.Find("Answer1Label");
@@ -41,10 +56,11 @@ public class QuizMgr : MonoBehaviour
         answer3Label = GameObject.Find("Answer3Label");
         answer4Label = GameObject.Find("Answer4Label");
 
-        geeckos[0] = GameObject.Find("Geecko1");
-        geeckos[1] = GameObject.Find("Geecko2");
-        geeckos[2] = GameObject.Find("Geecko3");
+        geekos[0] = GameObject.Find("Geeko1");
+        geekos[1] = GameObject.Find("Geeko2");
+        geekos[2] = GameObject.Find("Geeko3");
 
+        //Show first panel (Welcome Panel)
         welcomePanel.SetActive(true);
         loginPanel.SetActive(false);
         gamePanel.SetActive(false);
@@ -58,22 +74,38 @@ public class QuizMgr : MonoBehaviour
         
     }
 
-    public void LoadGame(MailAddress mailAddress)
+    public void LoadGame(string mailAddress)
     {
+        // TODO: Get user data from Database requesting by mailAddress
+        //       Create a new user data if mailAddress not exist
+        userData = new UserData(mailAddress);
 
-        // Get questions and user data
-        string userDataFile = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "sampleUserData.json"));
-        string questionsFile = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "sampleQuestions.json"));
-        userData = JsonUtility.FromJson<UserData>(userDataFile);
-        questions = JsonUtility.FromJson<Questions>(questionsFile);
+        // string userDataFile = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "sampleUserData.json"));
+        // userData = JsonUtility.FromJson<UserData>(userDataFile);
 
-        // Pre-load first question
-        RefreshGeeckos();
-        NextQuestion();
+        // Get questions from GitHub repository
+        Action<string> callbackQuestions = data =>
+        {
+            //Save questions in memory
+            questions = JsonUtility.FromJson<Questions>(data);
 
-        // Load Game Panel
-        gamePanel.SetActive(true);
-        loginPanel.SetActive(false);
+            // Pre-load first question
+            RefreshGeeckos();
+            NextQuestion();
+
+            // Load Game Panel
+            gamePanel.SetActive(true);
+            loginPanel.SetActive(false);
+        };
+        webManager.GetComponent<WebRequestMgr>().request(questionsURL, callbackQuestions);
+    }
+
+    public void OnLoginClick()
+    {
+        if (IsValidEmail(emailText.text))
+        {
+           LoadGame(emailText.text);
+        }
     }
 
     public void OnAnswerClick(Text userAnswer)
@@ -90,10 +122,26 @@ public class QuizMgr : MonoBehaviour
     public void OnTryAgainClick()
     {
         // TODO: Reset UserData on Database
+        userData.solvedQuestions = new Question[0];
+        userData.lives = 3;
+        SaveUserData();
 
         // Load Login Panel
         loginPanel.SetActive(true);
         losePanel.SetActive(false);
+    }
+
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            MailAddress mailAddress = new System.Net.Mail.MailAddress(email);
+            return mailAddress.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private void RightAnswer()
@@ -132,7 +180,7 @@ public class QuizMgr : MonoBehaviour
 
     private void SolvedQuestion()
     {
-        var currentSolvedQuestions = userData.solvedQuestions.ToList();
+        List<Question> currentSolvedQuestions = userData.solvedQuestions.ToList();
         currentSolvedQuestions.Add(currentQuestion);
         userData.solvedQuestions = currentSolvedQuestions.ToArray();
     }
@@ -154,9 +202,8 @@ public class QuizMgr : MonoBehaviour
 
     private void SaveUserData()
     {
-        // TODO: Connect to database an save user data
-        print("Lives: " + userData.lives);
-        print("Solved Questions: " + userData.solvedQuestions.ToString());
+        // TODO: Connect to database and save user data
+        print($"\nE-Mail:{userData.mailAddress}\nLives: {userData.lives}\nSolved Questions: {userData.solvedQuestions.Length}");
     }
 
     private void LoseGeecko()
@@ -167,9 +214,9 @@ public class QuizMgr : MonoBehaviour
 
     private void RefreshGeeckos()
     {
-        for (int i = 0; i < geeckos.Length; i++)
+        for (int i = 0; i < geekos.Length; i++)
         {
-            geeckos[i].SetActive(userData.lives > i);
+            geekos[i].SetActive(userData.lives > i);
         }
     }
 }

@@ -26,9 +26,9 @@
       "wrongAnswers" : ["Cat","Dog","Lizard"]
     },
     {
-      "question" : "Allow we remote working?",
+      "question" : "Do we allow remote working?",
       "answer" : "Yes",
-      "wrongAnswers" : ["No","Only on Friday","Only in Germany"]
+      "wrongAnswers" : ["No","Only on Fridays","Only in Germany"]
     },
     {
       "question" : "What's the last released version of the SUSE Linux Enterprise Server?",
@@ -59,6 +59,16 @@
       "question" : "What's short name of the annual SUSE Conference?",
       "answer" : "SUSECon",
       "wrongAnswers" : ["GreenCon","SUSEConf","Geekcon"]
+    },
+    {
+      "question" : "For what is the slogan 'Smarter innovation that puts you back in control'?",
+      "answer" : "SUSE",
+      "wrongAnswers" : ["Brexit","Tante Suzie","Sushi"]
+    },
+    {
+      "question" : "What manages your network interfaces on SLES?",
+      "answer" : "Wicked",
+      "wrongAnswers" : ["Vicious","Crooked","Network Ballader"]
     }
   ]
 }

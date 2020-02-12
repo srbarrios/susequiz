@@ -1,0 +1,16 @@
+{
+"companyName": "SUSE",
+"productName": "SUSE Quiz",
+"productVersion": "0.1",
+"dataUrl": "HTML5.data.unityweb",
+"wasmCodeUrl": "HTML5.wasm.code.unityweb",
+"wasmFrameworkUrl": "HTML5.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Light",
+"backgroundColor": "#828080",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.0f6"
+}

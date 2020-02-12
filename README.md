@@ -9,3 +9,5 @@ When they win the game and e-mail will be sent to a concrete address (it might b
 - [Architecture draft](https://docs.google.com/presentation/d/1Nd-UQr3juwj9_pLxkw4BUIDoNJJESUaPM5bTsUXbZ30)
 
 - [Mockup](https://app.moqups.com/FzcvWkj9bb/view/page/ad64222d5?ui=0)
+
+- [HTML5 version](https://srbarrios.github.io/susequiz/)

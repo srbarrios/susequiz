@@ -148,18 +148,23 @@ public class QuizMgr : MonoBehaviour
     {
         SolvedQuestion();
         SaveUserData();
-        if (userData.solvedQuestions.Length >= 10) 
+        if (userData.solvedQuestions.Length >= 10)
         {
-            // TODO: Send e-mail with user details to HR
-            
-            // Load Win Panel
-            winPanel.SetActive(true);
-            gamePanel.SetActive(false);
-        } 
+            Win();
+        }
         else 
         {
             NextQuestion(); 
         }
+    }
+
+    private void Win()
+    {
+        // TODO: Send e-mail with user details to HR
+
+        // Load Win Panel
+        winPanel.SetActive(true);
+        gamePanel.SetActive(false);
     }
 
     private void WrongAnswer()
@@ -183,10 +188,13 @@ public class QuizMgr : MonoBehaviour
         List<Question> currentSolvedQuestions = userData.solvedQuestions.ToList();
         currentSolvedQuestions.Add(currentQuestion);
         userData.solvedQuestions = currentSolvedQuestions.ToArray();
+        Question[] remainingQuestions = questions.questions.Except(userData.solvedQuestions).ToArray();
+        questions.questions = remainingQuestions;
     }
 
     private void NextQuestion()
     {
+        if (questions.questions.Length == 0) Win();
         currentQuestion = questions.questions[UnityEngine.Random.Range(0, questions.questions.Length)];
         questionLabel.GetComponent<Text>().text = currentQuestion.question;
         List<string> answers = new List<string>();

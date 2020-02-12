@@ -51,13 +51,13 @@
       "wrongAnswers" : ["Greeny","Susy","Leap"]
     },
     {
-      "question" : "What is bug bsc#547233 about?"
-      "answer" : "Cold fusion"
+      "question" : "What is bug bsc#547233 about?",
+      "answer" : "Cold fusion",
       "wrongAnswers" : ["Time travel","SUSE Manager","SLE"]
     },
     {
-      "question" : "What's short name of the annual SUSE Conference?"
-      "answer" : "SUSECon"
+      "question" : "What's short name of the annual SUSE Conference?",
+      "answer" : "SUSECon",
       "wrongAnswers" : ["GreenCon","SUSEConf","Geekcon"]
     }
   ]

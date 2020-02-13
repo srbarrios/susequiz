@@ -46,7 +46,7 @@
       "wrongAnswers" : ["1988","1992","2005"]
     },
     {
-      "question" : "How we call our pet?",
+      "question" : "How do we call our pet?",
       "answer" : "Geeko",
       "wrongAnswers" : ["Greeny","Susy","Leap"]
     },
@@ -61,7 +61,7 @@
       "wrongAnswers" : ["GreenCon","SUSEConf","Geekcon"]
     },
     {
-      "question" : "For what is the slogan 'Smarter innovation that puts you back in control'?",
+      "question" : "'Smarter innovation that puts you back in control' refers to",
       "answer" : "SUSE",
       "wrongAnswers" : ["Brexit","Tante Suzie","Sushi"]
     },
@@ -69,6 +69,21 @@
       "question" : "What manages your network interfaces on SLES?",
       "answer" : "Wicked",
       "wrongAnswers" : ["Vicious","Crooked","Network Ballader"]
+    },
+    {
+      "question" : "Our slogan is: We adapt, you ...",
+      "answer" : "succeed",
+      "wrongAnswers" : ["listen","see","applaude"]
+    },
+    {
+      "question" : "What tool does SLES use to update software from online?",
+      "answer" : "zypper",
+      "wrongAnswers" : ["yum","apt-get","cron"]
+    },
+    {
+      "question" : "S.u.S.E. was abreviation for System and Software ...",
+      "answer" : "Development",
+      "wrongAnswers" : ["Enhancement","Analysis","Training"]
     }
   ]
 }

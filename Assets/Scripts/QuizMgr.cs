@@ -10,7 +10,10 @@ using UnityEngine.UI;
 
 public class QuizMgr : MonoBehaviour
 {
-    readonly string questionsURL = "https://raw.githubusercontent.com/srbarrios/susequiz/master/Assets/StreamingAssets/sampleQuestions.json";
+    readonly static string questionsURL = "https://raw.githubusercontent.com/srbarrios/susequiz/master/Assets/StreamingAssets/sampleQuestions.json";
+    readonly static Color32 lemonColor = new Color32(200, 250, 0, 255);
+    readonly static Color32 greenColor = new Color32(52, 224, 96, 255);
+    readonly static Color32 redColor = new Color32(255, 87, 87, 255);
 
     //Panels
     GameObject webManager;
@@ -25,10 +28,7 @@ public class QuizMgr : MonoBehaviour
 
     //Game Panel
     GameObject questionLabel;
-    GameObject answer1Label;
-    GameObject answer2Label;
-    GameObject answer3Label;
-    GameObject answer4Label;
+    GameObject[] answers;
     GameObject[] geekos;
 
     //Data
@@ -40,6 +40,7 @@ public class QuizMgr : MonoBehaviour
     void Start()
     {
         geekos = new GameObject[3];
+        answers = new GameObject[4];
 
         webManager = GameObject.Find("WebMgr");
         welcomePanel = GameObject.Find("WelcomePanel");
@@ -51,10 +52,10 @@ public class QuizMgr : MonoBehaviour
         emailText = GameObject.Find("EmailText").GetComponent<Text>();
 
         questionLabel = GameObject.Find("QuestionLabel");
-        answer1Label = GameObject.Find("Answer1Label");
-        answer2Label = GameObject.Find("Answer2Label");
-        answer3Label = GameObject.Find("Answer3Label");
-        answer4Label = GameObject.Find("Answer4Label");
+        answers[0] = GameObject.Find("Answer1Label");
+        answers[1] = GameObject.Find("Answer2Label");
+        answers[2] = GameObject.Find("Answer3Label");
+        answers[3] = GameObject.Find("Answer4Label");
 
         geekos[0] = GameObject.Find("Geeko1");
         geekos[1] = GameObject.Find("Geeko2");
@@ -112,10 +113,47 @@ public class QuizMgr : MonoBehaviour
     {
         if (currentQuestion.answer == userAnswer.text) 
         {
-            RightAnswer();
+            StartCoroutine(RightAnswer());
         } else
         {
-            WrongAnswer();
+            StartCoroutine(WrongAnswer(userAnswer.text));
+        }
+    }
+
+    private void RightAnswerAnimation(string rightAnswer)
+    {
+        foreach (GameObject answer in answers)
+        {
+            answer.GetComponentInParent<Button>().interactable = false;
+            if (answer.GetComponent<Text>().text == rightAnswer)
+            {
+                answer.GetComponentInParent<Image>().color = lemonColor;
+            }
+        }
+    }
+
+    private void WrongAnswerAnimation(string rightAnswer, string wrongAnswer)
+    {
+        foreach (GameObject answer in answers) {
+            answer.GetComponentInParent<Button>().interactable = false;
+            if (answer.GetComponent<Text>().text == rightAnswer) 
+            {
+                print($"Green answer: {rightAnswer}");
+                answer.GetComponentInParent<Image>().color = lemonColor;
+            }
+            if (answer.GetComponent<Text>().text == wrongAnswer) 
+            { 
+                print($"Red answer: {wrongAnswer}");
+                answer.GetComponentInParent<Image>().color = redColor;
+            }
+        }
+    }
+
+    private void ResetButtonColors() {
+        foreach (GameObject answer in answers)
+        {
+            answer.GetComponentInParent<Button>().interactable = true;
+            answer.GetComponentInParent<Image>().color = greenColor;
         }
     }
 
@@ -144,8 +182,11 @@ public class QuizMgr : MonoBehaviour
         }
     }
 
-    private void RightAnswer()
+    private IEnumerator RightAnswer()
     {
+        RightAnswerAnimation(currentQuestion.answer);
+        yield return new WaitForEndOfFrame();
+        ResetButtonColors();
         SolvedQuestion();
         SaveUserData();
         if (userData.solvedQuestions.Length >= 10)
@@ -157,18 +198,11 @@ public class QuizMgr : MonoBehaviour
             NextQuestion(); 
         }
     }
-
-    private void Win()
+    private IEnumerator WrongAnswer(string userAnswer)
     {
-        // TODO: Send e-mail with user details to HR
-
-        // Load Win Panel
-        winPanel.SetActive(true);
-        gamePanel.SetActive(false);
-    }
-
-    private void WrongAnswer()
-    {
+        WrongAnswerAnimation(currentQuestion.answer, userAnswer);
+        yield return new WaitForSeconds(2.0f);
+        ResetButtonColors();
         if (userData.lives > 0)
         {
             LoseGeecko();
@@ -178,9 +212,18 @@ public class QuizMgr : MonoBehaviour
         else
         {
             // Load Lose Panel
-            losePanel.SetActive(true); 
+            losePanel.SetActive(true);
             gamePanel.SetActive(false);
         }
+    }
+
+    private void Win()
+    {
+        // TODO: Send e-mail with user details to HR
+
+        // Load Win Panel
+        winPanel.SetActive(true);
+        gamePanel.SetActive(false);
     }
 
     private void SolvedQuestion()
@@ -197,21 +240,21 @@ public class QuizMgr : MonoBehaviour
         if (questions.questions.Length == 0) Win();
         currentQuestion = questions.questions[UnityEngine.Random.Range(0, questions.questions.Length)];
         questionLabel.GetComponent<Text>().text = currentQuestion.question;
-        List<string> answers = new List<string>();
-        answers.Add(currentQuestion.answer);
-        answers.AddRange(currentQuestion.wrongAnswers);
-        List<string> shuffledAnswers = answers.OrderBy(x => Guid.NewGuid()).ToList();
+        List<string> nextAnswers = new List<string>();
+        nextAnswers.Add(currentQuestion.answer);
+        nextAnswers.AddRange(currentQuestion.wrongAnswers);
+        List<string> shuffledAnswers = nextAnswers.OrderBy(x => Guid.NewGuid()).ToList();
 
-        answer1Label.GetComponent<Text>().text = shuffledAnswers[0];
-        answer2Label.GetComponent<Text>().text = shuffledAnswers[1];
-        answer3Label.GetComponent<Text>().text = shuffledAnswers[2];
-        answer4Label.GetComponent<Text>().text = shuffledAnswers[3];
+        answers[0].GetComponent<Text>().text = shuffledAnswers[0];
+        answers[1].GetComponent<Text>().text = shuffledAnswers[1];
+        answers[2].GetComponent<Text>().text = shuffledAnswers[2];
+        answers[3].GetComponent<Text>().text = shuffledAnswers[3];
     }
 
     private void SaveUserData()
     {
         // TODO: Connect to database and save user data
-        print($"\nE-Mail:{userData.mailAddress}\nLives: {userData.lives}\nSolved Questions: {userData.solvedQuestions.Length}");
+        // print($"\nE-Mail:{userData.mailAddress}\nLives: {userData.lives}\nSolved Questions: {userData.solvedQuestions.Length}");
     }
 
     private void LoseGeecko()

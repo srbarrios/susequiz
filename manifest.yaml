@@ -1,5 +1,6 @@
 ---
 applications:
  - name: susequiz-backend
-   memory: 128M
+   memory: 100M
    buildpack: java_buildpack
+   path: /Backend

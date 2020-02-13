@@ -59,3 +59,21 @@ sysinfo.txt
 crashlytics-build.properties
 
 Output/
+
+#SpringBoot
+*#
+*.iml
+*.ipr
+*.iws
+*.jar
+*.sw?
+*~
+.#*
+.*.md.html
+.classpath
+.gradle
+.idea
+gradle
+build
+build.log
+out

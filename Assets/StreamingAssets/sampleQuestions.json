@@ -68,12 +68,12 @@
     {
       "question" : "What manages your network interfaces on SLES?",
       "answer" : "Wicked",
-      "wrongAnswers" : ["Vicious","Crooked","Network Ballader"]
+      "wrongAnswers" : ["Vicious","Black Magic","Network Ballader"]
     },
     {
       "question" : "Our slogan is: We adapt, you ...",
       "answer" : "succeed",
-      "wrongAnswers" : ["listen","see","applaude"]
+      "wrongAnswers" : ["listen","have coffee","applaude"]
     },
     {
       "question" : "What tool does SLES use to update software from online?",
@@ -84,6 +84,16 @@
       "question" : "S.u.S.E. was abreviation for System and Software ...",
       "answer" : "Development",
       "wrongAnswers" : ["Enhancement","Analysis","Training"]
+    },
+    {
+      "question" : "On what distribution was S.u.S.E based until version 4.2?",
+      "answer" : "Slackware",
+      "wrongAnswers" : ["Red Hat","Debian","Knoppix"]
+    },
+    {
+      "question" : "What is the name of the SUSE tool used to build images?",
+      "answer" : "Kiwi",
+      "wrongAnswers" : ["Lime","Lemon","Mango"]
     }
   ]
 }

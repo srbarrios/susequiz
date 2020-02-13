@@ -2,5 +2,6 @@
 applications:
  - name: susequiz-backend
    memory: 100M
-   buildpack: java_buildpack
-   path: /Backend
+   buildpacks: 
+   - java_buildpack
+   path: /Backend/build/libs/quiz-0.0.1-SNAPSHOT.jar

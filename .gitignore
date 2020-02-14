@@ -71,7 +71,7 @@ Output/
 .classpath
 .gradle
 .idea
-gradle
+# gradle (Not ignoring gradle wrapper to be used by GitHub Actions for CI)
 # build (Not ignoring build folder to be used on CAP)
 build.log
 out

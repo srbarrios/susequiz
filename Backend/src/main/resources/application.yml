@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: susequiz
+server:
+  port: 8080
+redis:
+  hostname: fantastic-stoat-redis-master.minibroker.svc.cluster.local
+  port: 6379
+  password: PlQwIA0bPt
+
+---
+spring:
+  profiles: prod
+  application:
+    name: susequiz
+server:
+  port: 9090
+redis:
+  hostname: 127.0.0.1
+  port: 6379
+  password: test

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -26,6 +27,9 @@ public class QuizApplication {
 	@Value(value = "${redis.port}")
 	private int redisPort;
 
+	@Value(value = "${redis.password}")
+	private String redisPassword;
+
 	public static void main(final String[] args) {
 		SpringApplication.run(QuizApplication.class, args);
 	}
@@ -33,6 +37,7 @@ public class QuizApplication {
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() {
 		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redisHostname, redisPort);
+        redisStandaloneConfiguration.setPassword(RedisPassword.of(redisPassword));
 		return new JedisConnectionFactory(redisStandaloneConfiguration);
 	}
 

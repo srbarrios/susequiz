@@ -5,7 +5,6 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
@@ -65,7 +64,6 @@ Output/
 *.iml
 *.ipr
 *.iws
-*.jar
 *.sw?
 *~
 .#*
@@ -74,6 +72,6 @@ Output/
 .gradle
 .idea
 gradle
-build
+# build (Not ignoring build folder to be used on CAP)
 build.log
 out

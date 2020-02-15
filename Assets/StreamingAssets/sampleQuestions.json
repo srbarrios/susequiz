@@ -94,6 +94,42 @@
       "question" : "What is the name of the SUSE tool used to build images?",
       "answer" : "Kiwi",
       "wrongAnswers" : ["Lime","Lemon","Mango"]
+    },
+    {
+      "question" : "In which year was SUSE founded?",
+      "answer" : "1992",
+      "wrongAnswers" : ["1996","1989","2001"]
+    },
+   {
+      "question" : "In which city was SUSE founded?",
+      "answer" : "Fuerth",
+      "wrongAnswers" : ["New York","Nuremberg","Moscow"]
+    },
+   {
+      "question" : "Which one is NOT a SUSE value?",
+      "answer" : "We take it easy",
+      "wrongAnswers" : ["We are SUSE","We are collaborative","We are empowered and accountable"]
+    },
+   {
+      "question" : "Which one is NOT a SUSE value?",
+      "answer" : "We do what we need to do",
+      "wrongAnswers" : ["We are passionate about customers","We are respectful and inclusive","We are trustworthy and act with integrity"]
+    },
+   {
+      "question" : "How many employees does SUSE vaguely have?",
+      "answer" : "1750",
+      "wrongAnswers" : ["1100","750","2500"]
+    },
+   {
+      "question" : "What means SLE?",
+      "answer" : "SUSE Linux Enterprise",
+      "wrongAnswers" : ["SUSE Linux Extreme","SUSE Linux Extra","SUSE Linux Elysium"]
+    },
+   {
+      "question" : "How long does SUSE support SLES?",
+      "answer" : "10+3 years",
+      "wrongAnswers" : ["at least 3 years","as long as there are paying customers","8 years"]
     }
+
   ]
 }

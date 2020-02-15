@@ -6,11 +6,11 @@ public class Question implements Serializable {
 
     private static final long serialVersionUID = -305726463442998985L;
 
-    private String question;
+    public String question;
 
-    private String answer;
+    public String answer;
 
-    private String[] wrongAnswers;
+    public String[] wrongAnswers;
 
     public String getQuestion() {
         return question;
@@ -35,5 +35,4 @@ public class Question implements Serializable {
     public void setWrongAnswers(String[] wrongAnswers) {
         this.wrongAnswers = wrongAnswers;
     }
-
 }

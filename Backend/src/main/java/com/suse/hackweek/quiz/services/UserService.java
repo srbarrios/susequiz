@@ -1,7 +1,6 @@
 package com.suse.hackweek.quiz.services;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.ws.rs.NotFoundException;
 
@@ -26,8 +25,8 @@ public class UserService {
 		return getValueOperations().multiGet(userTemplate.keys(getRedisKey(pattern)));
 	}
 
-	public User findById(final String userId) {
-		final User user = getValueOperations().get(getRedisKey(UUID.fromString(userId).toString()));
+	public User findByMailAddress(final String mailAddress) {
+		final User user = getValueOperations().get(getRedisKey(mailAddress));
 		if(user == null) {
 			throw new NotFoundException("User does not exist in the DB");
 		}
@@ -35,17 +34,16 @@ public class UserService {
 	}
 
 	public void save(final User user) {
-		user.setMailAddress(UUID.randomUUID().toString());
 		getValueOperations().set(getRedisKey(user.getMailAddress()), user);
 	}
 
 	public void update(final User user) {
-		findById(user.getMailAddress());
+		findByMailAddress(user.getMailAddress());
 		getValueOperations().set(getRedisKey(user.getMailAddress()), user);
 	}
 
-	public void delete(final String userId) {
-		if(!userTemplate.delete(getRedisKey(UUID.fromString(userId).toString()))) {
+	public void delete(final String mailAddress) {
+		if(!userTemplate.delete(getRedisKey(mailAddress))) {
 			throw new NotFoundException("User does not exist in the DB");
 		}
 	}

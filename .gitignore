@@ -5,7 +5,6 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
@@ -65,7 +64,6 @@ Output/
 *.iml
 *.ipr
 *.iws
-*.jar
 *.sw?
 *~
 .#*
@@ -73,7 +71,7 @@ Output/
 .classpath
 .gradle
 .idea
-gradle
-build
+# gradle (Not ignoring gradle wrapper to be used by GitHub Actions for CI)
+# build (Not ignoring build folder to be used on CAP)
 build.log
 out

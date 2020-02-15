@@ -6,11 +6,11 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = -305726463442998985L;
 
-    private String mailAddress;
+    public String mailAddress;
 
-    private Question[] solvedQuestions;
+    //public Question[] solvedQuestions;
 
-    private int lives;
+    public int lives;
 
     public String getMailAddress() {
         return mailAddress;
@@ -19,7 +19,7 @@ public class User implements Serializable {
     public void setMailAddress(String mailAddress) {
         this.mailAddress = mailAddress;
     }
-
+/*
     public Question[] getSolvedQuestions() {
         return solvedQuestions;
     }
@@ -27,7 +27,7 @@ public class User implements Serializable {
     public void setSolvedQuestions(Question[] solvedQuestions) {
         this.solvedQuestions = solvedQuestions;
     }
-
+*/
     public int getLives() {
         return lives;
     }
@@ -35,5 +35,4 @@ public class User implements Serializable {
     public void setLives(int lives) {
         this.lives = lives;
     }
-
 }

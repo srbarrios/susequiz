@@ -32,9 +32,9 @@ public class UserResource {
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON)
-    public ResponseEntity<User> getUsers(@PathVariable("id") final String userId) {
-    	final User user = userService.findById(userId);
+    @GetMapping(value = "/{mailAddress}", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<User> getUsers(@PathVariable("mailAddress") final String mailAddress) {
+    	final User user = userService.findByMailAddress(mailAddress);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
@@ -44,16 +44,16 @@ public class UserResource {
     	return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON)
-    public ResponseEntity<Void> updateUser(@PathVariable("id") final String userId, @RequestBody final User user) {
-    	user.setMailAddress(userId);
+    @PutMapping(value = "/{mailAddress}", consumes = MediaType.APPLICATION_JSON)
+    public ResponseEntity<Void> updateUser(@PathVariable("mailAddress") final String mailAddress, @RequestBody final User user) {
+    	user.setMailAddress(mailAddress);
     	userService.update(user);
     	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("id") final String userId) {
-    	userService.delete(userId);
+    @DeleteMapping(value = "/{mailAddress}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("mailAddress") final String mailAddress) {
+    	userService.delete(mailAddress);
     	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

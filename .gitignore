@@ -72,6 +72,11 @@ Output/
 .gradle
 .idea
 # gradle (Not ignoring gradle wrapper to be used by GitHub Actions for CI)
-# build (Not ignoring build folder to be used on CAP)
 build.log
 out
+Backend/build/classes/
+Backend/build/exploded-quiz/
+Backend/build/reports/
+Backend/build/resources/
+Backend/build/test-results/
+Backend/build/tmp/

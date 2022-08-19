@@ -17,8 +17,8 @@
     },
     {
       "question" : "What's our official chatting tool?",
-      "answer" : "Rocket Chat",
-      "wrongAnswers" : ["IRC","Messenger","Slack"]
+      "answer" : "Slack",
+      "wrongAnswers" : ["IRC","Messenger","Rocket Chat"]
     },
     {
       "question" : "What's our favourite pet?",
@@ -32,8 +32,8 @@
     },
     {
       "question" : "What's the last released version of the SUSE Linux Enterprise Server?",
-      "answer" : "15 SP1",
-      "wrongAnswers" : ["15 SP2","12 SP4","11 SP4"]
+      "answer" : "15 SP4",
+      "wrongAnswers" : ["15 SP2","12 SP4","13 SP7"]
     },
     {
       "question" : "What's the name of openSUSE rolling release?",
@@ -117,8 +117,8 @@
     },
    {
       "question" : "How many employees does SUSE vaguely have?",
-      "answer" : "1750",
-      "wrongAnswers" : ["1100","750","2500"]
+      "answer" : "2000",
+      "wrongAnswers" : ["1100","750","9500"]
     },
    {
       "question" : "What means SLE?",
@@ -129,7 +129,16 @@
       "question" : "How long does SUSE support SLES?",
       "answer" : "10+3 years",
       "wrongAnswers" : ["at least 3 years","as long as there are paying customers","8 years"]
+    },
+   {
+      "question" : "Which company did SUSE acquire recently?",
+      "answer" : "Rancher Labs",
+      "wrongAnswers" : ["Red Hat","Novell","Walmart"]
+    },
+   {
+      "question" : "What is K3S?",
+      "answer" : "A Kubernetes distribution",
+      "wrongAnswers" : ["A Kerberos service","A Kettle Stand","A cloud company"]
     }
-
   ]
 }
